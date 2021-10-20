@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}Covid Vaccintion {% endblock %}
+
+{% block content %}
+  <h2>Covid Vaccination » People Management</h2>
+
+  <p>
+    <a href="{% url 'covidvacclist_add' %}">Add Covidvacc</a>
+  </p>
+
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>District</th>
+        <th>State</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for covidvacc in covidvacc %}
+        <tr>
+          <td><a href="{% url 'covidvacc_change' covidvacc.pk %}">{{ student.name }}</a></td>
+          <td>{{ covidvacc.Age }}</td>
+          <td>{{ covidvacc.District.name }}</td>
+          <td>{{ covidvacc.State.name }}</td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="4">No person in the database. <a href="{% url 'student_add' %}">Add the first person</a>.</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}
